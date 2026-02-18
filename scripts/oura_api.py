@@ -19,7 +19,8 @@ def get_headers():
         print("2. Generate a new Personal Access Token.")
         print("3. Set the environment variable using one of these methods:")
         print("   - Option A (Recommended): Create a .env file in your agent's root directory with:\n     OURA_ACCESS_TOKEN=your_token_here")
-        print("   - Option B: Export it in your terminal before running the agent:\n     export OURA_ACCESS_TOKEN='your_token_here'")
+        print("   - Option B: Add to your shell config (~/.zshenv, ~/.bashrc):\n     echo 'export OURA_ACCESS_TOKEN=\"your_token_here\"' >> ~/.zshenv\n     source ~/.zshenv")
+        print("   - Option C: Export temporarily in your terminal:\n     export OURA_ACCESS_TOKEN='your_token_here'")
         sys.exit(1)
     return {
         "Authorization": f"Bearer {TOKEN}"

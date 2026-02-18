@@ -19,7 +19,14 @@ A skill to fetch sleep, activity, and readiness data from Oura Ring. Designed fo
     OURA_ACCESS_TOKEN=your_token_here
     ```
 
-    **Option B: Terminal Export**
+    **Option B: Shell Config (Permanent)**
+    Add the export to your shell configuration file (e.g., `~/.zshenv`, `~/.zshrc`, or `~/.bashrc`):
+    ```bash
+    echo 'export OURA_ACCESS_TOKEN="your_token_here"' >> ~/.zshenv
+    source ~/.zshenv
+    ```
+
+    **Option C: Terminal Export (Temporary)**
     Run this before starting your agent:
     ```bash
     export OURA_ACCESS_TOKEN="your_token_here"
