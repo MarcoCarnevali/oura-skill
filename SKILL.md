@@ -26,6 +26,7 @@ python3 skills/oura/scripts/oura_api.py <command> [days_back]
 - `activity`: Get daily activity summary (score, steps, calories)
 - `readiness`: Get daily readiness summary (score, HRV balance)
 - `personal_info`: Get user profile info (no days_back arg needed)
+- `advise`: Get AI-ready health advice based on sleep + readiness (e.g. "Peak Performance" vs "Recovery Mode")
 
 ### Examples
 

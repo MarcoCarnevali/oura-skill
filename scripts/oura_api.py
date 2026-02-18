@@ -54,10 +54,48 @@ def fetch_data(endpoint, start_date=None, end_date=None):
         print(f"Error: {e}")
         sys.exit(1)
 
+def get_advice(readiness_data, sleep_data):
+    if not readiness_data['data'] or not sleep_data['data']:
+        return "Not enough data to generate advice."
+
+    # Get latest entries
+    r = readiness_data['data'][-1]
+    s = sleep_data['data'][-1]
+    
+    r_score = r.get('score', 0)
+    s_score = s.get('score', 0)
+    
+    # Analyze
+    status = "UNKNOWN"
+    advice = ""
+    
+    if r_score >= 85:
+        status = "PEAK PERFORMANCE 🚀"
+        advice = "Your body is ready for high-intensity work. Push your limits today."
+    elif r_score >= 70:
+        status = "OPTIMAL 🟢"
+        advice = "Good recovery. Maintain normal training and workload."
+    else:
+        status = "RECOVERY MODE 🔴"
+        advice = "Your body is stressed. Prioritize light movement, nap, and early sleep."
+
+    if s_score < 60:
+        advice += "\n⚠️ Warning: Sleep score is critically low. Cognitive function may be impaired."
+
+    return json.dumps({
+        "status": status,
+        "advice": advice,
+        "scores": {
+            "readiness": r_score,
+            "sleep": s_score
+        },
+        "date": r.get('day')
+    }, indent=2)
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: oura_api.py <command> [days_back]")
-        print("Commands: sleep, activity, readiness, personal_info")
+        print("Commands: sleep, activity, readiness, personal_info, advise")
         sys.exit(1)
 
     command = sys.argv[1]
@@ -72,8 +110,13 @@ def main():
         print(json.dumps(data, indent=2))
         return
 
-    # Map simple commands to API endpoints
-    # Using "daily" endpoints for summarized stats
+    if command == "advise":
+        # Need both readiness and sleep
+        r_data = fetch_data("daily_readiness", start_date, end_date)
+        s_data = fetch_data("daily_sleep", start_date, end_date)
+        print(get_advice(r_data, s_data))
+        return
+
     endpoint_map = {
         "sleep": "daily_sleep",
         "activity": "daily_activity",
