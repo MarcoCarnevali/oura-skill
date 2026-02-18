@@ -11,7 +11,16 @@ A skill to fetch sleep, activity, and readiness data from Oura Ring. Designed fo
     - Copy the token string.
 
 2.  **Configure Environment:**
-    Add the token to your shell environment:
+    You have two options:
+    
+    **Option A: The `.env` File (Recommended)**
+    Create a `.env` file in your agent's root directory:
+    ```bash
+    OURA_ACCESS_TOKEN=your_token_here
+    ```
+
+    **Option B: Terminal Export**
+    Run this before starting your agent:
     ```bash
     export OURA_ACCESS_TOKEN="your_token_here"
     ```
