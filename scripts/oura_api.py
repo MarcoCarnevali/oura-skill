@@ -13,7 +13,11 @@ TOKEN = os.environ.get("OURA_ACCESS_TOKEN")
 
 def get_headers():
     if not TOKEN:
-        print("Error: OURA_ACCESS_TOKEN environment variable not set.")
+        print("❌ Error: OURA_ACCESS_TOKEN environment variable is missing.")
+        print("\nTo fix this:")
+        print("1. Go to https://cloud.ouraring.com/personal-access-tokens")
+        print("2. Generate a new Personal Access Token.")
+        print("3. Add it to your environment:\n   export OURA_ACCESS_TOKEN='your_token_here'")
         sys.exit(1)
     return {
         "Authorization": f"Bearer {TOKEN}"
