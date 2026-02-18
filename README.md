@@ -1,23 +1,23 @@
-# OpenClaw Oura Skill 💍
+# Oura Ring Skill 💍
 
-Connect your Oura Ring to OpenClaw to fetch sleep, activity, and readiness data directly from the CLI.
+A skill to fetch sleep, activity, and readiness data from Oura Ring. Designed for AI agents like Codex, Claude Code, and OpenClaw.
 
 ## Setup
 
 1.  **Get your Personal Access Token (PAT):**
     - Go to [Oura Cloud › Personal Access Tokens](https://cloud.ouraring.com/personal-access-tokens)
     - Click "Create New Personal Access Token"
-    - Give it a name (e.g., `OpenClaw`)
+    - Give it a name (e.g., `Agent-Skill`)
     - Copy the token string.
 
 2.  **Configure Environment:**
-    Add the token to your shell environment or OpenClaw config:
+    Add the token to your shell environment:
     ```bash
     export OURA_ACCESS_TOKEN="your_token_here"
     ```
 
 3.  **Install Skill:**
-    Place this folder in your OpenClaw `skills/` directory.
+    Place this folder in your agent's `skills/` directory.
 
 ## Usage
 
